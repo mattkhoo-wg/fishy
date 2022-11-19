@@ -13,6 +13,10 @@ function LandingPage() {
     //keeps track of address to search
     const [searchInput, setSearchInput] = useState("");
 
+    useEffect(() => {
+        //run model in backend and fetch data to check if spam
+        //display appropriate images
+    })
     return(
         <div>
             <Bubbles />

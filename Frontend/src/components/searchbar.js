@@ -10,7 +10,8 @@ const SearchBar = styled('input', {
     outline: '0',
     backgroundColor: 'white',
     opacity: '1',
-    fontSize: "20px"
+    fontSize: "20px",
+    maxlength: "42"
 })
 
 export default SearchBar
