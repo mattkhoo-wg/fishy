@@ -21,3 +21,11 @@ export const SearchbarContainer = styled('div', {
     width: "75%",
     justifyContent: "center"
 })
+
+export const NavBar = styled('div', {
+    display: "flex",
+    alignContent: "right",
+    justifyContent: "right",
+    alignSelf: "flex-end",
+    padding: "20px"
+})
