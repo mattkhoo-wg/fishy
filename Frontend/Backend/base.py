@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route("/<address>")
 def hello_world(address):
     features = getFeatures.get_features_from_address(address)
-
+    print(features)
     return str(features)
  
 if __name__ == '__main__':
