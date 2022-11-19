@@ -2,7 +2,7 @@
   "name": "fishy",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3000",
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@stitches/react": "^1.2.8",
     "@testing-library/jest-dom": "^5.16.5",
@@ -15,7 +15,8 @@
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "stitches": "^1.2.11",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "web3": "^1.8.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -12,7 +12,12 @@ import { BsSearch } from "react-icons/bs";
 function LandingPage() {
     //keeps track of address to search
     const [searchInput, setSearchInput] = useState("");
-
+    function getData() {
+        axios({
+            method: "GET",
+            url:'/'
+        })
+    }
     useEffect(() => {
         //run model in backend and fetch data to check if spam
         //display appropriate images
@@ -21,7 +26,6 @@ function LandingPage() {
         <div>
             <Bubbles />
             <LandingPageBox>
-                
                 <LogoContainer style={{display: "flex", paddingTop: "8%"}}>
                     <img src="../images/logo.png" alt='fish logo' width="25%" height="15%" paddingTop="8%"/>
                 </LogoContainer>
@@ -31,7 +35,6 @@ function LandingPage() {
                         <BsSearch style={{height: '25px', width:'25px', padding:'5px'}}></BsSearch> 
                     </form>
                 </SearchbarContainer>
-                
             </LandingPageBox>
             
         </div>
