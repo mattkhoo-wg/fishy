@@ -123,9 +123,9 @@ def get_features_from_address(address):
 
     return addr_normal_features
 
-    def std_balance_eth(valuesTx):
-        if len(valuesTx) < 2:
-            return 0
+def std_balance_eth(valuesTx):
+    if len(valuesTx) < 2:
+        return 0
 
     balances = []
     balances.append(valuesTx[0])
