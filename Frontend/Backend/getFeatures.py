@@ -9,8 +9,7 @@ from constants import *
 
 def get_features_from_address(address):
     ETH_IN_WEI = 1000000000000000000
-    url = "http://api.etherscan.io/api?module=account&action=txlist&address={address}" \
-          "&startblock=0&endblock=999999999&sort=asc&apikey={api_key}".format(address=address, api_key=API_KEY)
+    url = "http://api.etherscan.io/api?module=account&action=txlist&address={address}&startblock=0&endblock=999999999&sort=asc&apikey={api_key}".format(address=address, api_key=API_KEY)
     r = requests.get(url)
     data = r.json()
 
@@ -123,9 +122,9 @@ def get_features_from_address(address):
 
     return addr_normal_features
 
-    def std_balance_eth(valuesTx):
-        if len(valuesTx) < 2:
-            return 0
+def std_balance_eth(valuesTx):
+    if len(valuesTx) < 2:
+        return 0
 
     balances = []
     balances.append(valuesTx[0])
