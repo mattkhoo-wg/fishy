@@ -17,9 +17,25 @@ export const LogoContainer = styled('div', {
 
 export const SearchbarContainer = styled('div', {
     display: "flex",
-    padding: "20px",
-    width: "100%",
+    paddingTop: "20px",
+    width: "400px",
     justifyContent: "center"
+})
+export const SecondSearchbarContainer = styled('div', {
+    display: "flex",
+
+    paddingTop: "20px",
+    width: "400px",
+    gap: "20px",
+    justifyContent: "flex-end"
+})
+export const SubmitContainer = styled('div', {
+    display: "flex",
+
+    paddingTop: "20px",
+    width: "400px",
+    gap: "20px",
+    justifyContent: "flex-start"
 })
 
 export const NavBar = styled('div', {
@@ -28,4 +44,12 @@ export const NavBar = styled('div', {
     justifyContent: "right",
     alignSelf: "flex-end",
     padding: "20px"
+})
+
+export const ResultBox = styled('div', {
+    display: "flex",
+    width: "400px",
+    height: "400px",
+    backgroundColor:"blue",
+    justifyContent: "flex-start"
 })

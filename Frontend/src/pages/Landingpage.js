@@ -5,42 +5,48 @@ import {
   LogoContainer,
   SearchbarContainer,
   NavBar,
+  SecondSearchbarContainer,
+  SubmitContainer,
 } from '../components/flexboxes'
 import { Dropdown } from '@nextui-org/react'
-import { Input,  Button, useInput} from '@nextui-org/react';
-
+import { Input, Button, useInput } from '@nextui-org/react'
+import Result from './Results'
+import ResultsModel from './Results'
 import axios from 'axios'
 import SearchBar from '../components/searchbar'
 import { BsSearch } from 'react-icons/bs'
 import { ConnectButton, darkTheme } from '@rainbow-me/rainbowkit'
-import { UNSAFE_getPathContributingMatches } from '@remix-run/router';
+import { UNSAFE_getPathContributingMatches } from '@remix-run/router'
+import Bubbles from './Bubbles'
+import { useEnsResolver } from 'wagmi'
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
+
 
 function LandingPage() {
+    
+
+ const notify = () => toast("Wow so easy!");
+
   //keeps track of address to search
- //keeps track of address to search
- const [searchInput, setSearchInput] = useState("");
- const [result, setResult] = useState("");
- const [address, setAddress] = useState("0x1");
+  //keeps track of address to search
+  const [searchInput, setSearchInput] = useState('')
+  const [result, setResult] = useState('')
+  const [address, setAddress] = useState('0x1')
 
- const { value, reset, bindings } = useInput("");
+  const { value, reset, bindings } = useInput('')
 
- async function getResult(){
-    await axios
-    .get('http://127.0.0.1:5000/'+ address, {})
-    .then(function (response) {
-        console.log("YAYYA")
-        setResult(response.data);
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
+ 
+
+  const handleChange = (event) => {
+    setAddress(event.target.value)
+
+    console.log('value is:', event.target.value)
   }
-  
-  const handleChange = event => {
-    setAddress(event.target.value);
-
-    console.log('value is:', event.target.value);
-  };
 
   return (
     <div>
@@ -57,13 +63,26 @@ function LandingPage() {
           />
         </LogoContainer>
         <SearchbarContainer>
-        <Input 
-          width="386px"
-          labelLeft="address" 
-          placeholder="vitalik.eth" 
-          css={{ $$inputColor: "#A054E0", $$inputPlaceholderColor: "#A054E0", $$nextuiColorsAccents2: "#A054E0" }}
-          onChange={handleChange}
-        />
+          <Input
+            width="400px"
+            labelLeft="address"
+            placeholder="vitalik.eth"
+            css={{
+              $$inputColor: '#A054E0',
+              $$inputPlaceholderColor: '#A054E0',
+              $$nextuiColorsAccents2: '#A054E0',
+            }}
+            onChange={handleChange}
+            shadow
+          />
+        </SearchbarContainer>
+        <SecondSearchbarContainer>
+          <Input
+            width="85px"
+            Placeholder="Amount"
+            type="number"
+            color="default"
+          />
           <Dropdown>
             <Dropdown.Button flat>ETH</Dropdown.Button>
             <Dropdown.Menu aria-label="Static Actions">
@@ -71,14 +90,15 @@ function LandingPage() {
               <Dropdown.Item key="copy">USDT</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-        </SearchbarContainer>
-        <Button color="primary"  onClick={getResult}>
-          {address}
-        </Button>
-        {result}
+        </SecondSearchbarContainer>
+        <SubmitContainer>
+          <ResultsModel address ={address}></ResultsModel>
+        </SubmitContainer>
       </LandingPageBox>
+      <Bubbles></Bubbles>
+      
+
     </div>
   )
-   
 }
 export default LandingPage

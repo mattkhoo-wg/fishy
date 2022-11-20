@@ -25,7 +25,7 @@ class bubble {
         // this.color = "0,0,0";
         this.size = this.generateDecimalBetween(2, 6);
         this.movementX = this.generateDecimalBetween(-0.4, 0.4);
-        this.movementY = this.generateDecimalBetween(0.7, 2);
+        this.movementY = this.generateDecimalBetween(0.3, 1);
         this.posX = this.generateDecimalBetween(0, this.maxWidth);
         this.posY = this.generateDecimalBetween(0, this.maxHeight);
     }

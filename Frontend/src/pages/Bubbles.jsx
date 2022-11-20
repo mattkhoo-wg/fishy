@@ -67,7 +67,8 @@ export default class Bubbles extends Component {
 			top: 0,
 			left: 0,
 		    width: '100%',
-		    height: '100%',
+			pointerEvents: 'none'
+		    // height: '100%',
 		};
 
 		return (<canvas id={this.id()} style={style}></canvas>);
