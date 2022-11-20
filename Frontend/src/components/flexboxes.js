@@ -17,8 +17,8 @@ export const LogoContainer = styled('div', {
 
 export const SearchbarContainer = styled('div', {
     display: "flex",
-    padding: "5%",
-    width: "75%",
+    padding: "20px",
+    width: "100%",
     justifyContent: "center"
 })
 

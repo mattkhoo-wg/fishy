@@ -1,13 +1,18 @@
 from flask import Flask
 import numpy as np
 import getFeatures
-# import tensorflow as tf
-# from tensorflow import keras
+import tensorflow as tf
+from tensorflow import keras
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
+from flask_cors import CORS, cross_origin
+
 
 # instance of flask application
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
  
 # home route that returns below text
 # when root url is accessed
@@ -18,6 +23,7 @@ def get_transform_model():
     return norm
 
 @app.route("/<address>")
+@cross_origin()
 def hello_world(address):
     features = getFeatures.get_features_from_address(address)
     new_features = np.array(features[1:])
