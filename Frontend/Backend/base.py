@@ -36,7 +36,7 @@ def hello_world(address):
 
     model = tf.keras.models.load_model('my_h5_model.h5')
     result = model.predict(X)
-    return str(result)
+    return str(result[0][0])
  
 if __name__ == '__main__':
     app.run(debug=True, port=3001)
