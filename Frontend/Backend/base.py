@@ -1,9 +1,11 @@
 from flask import Flask
 import numpy as np
 import getFeatures
+import tensorflow as tf
+from tensorflow import keras
+import numpy as np 
 import pandas as pd
-# import tensorflow as tf
-# from tensorflow import keras 
+
 # instance of flask application
 app = Flask(__name__)
  
@@ -11,17 +13,16 @@ app = Flask(__name__)
 # when root url is accessed
 @app.route("/<address>")
 def hello_world(address):
-    
     features = getFeatures.get_features_from_address(address)
-    # print(features)
-    food = np.array(features)
-    df = pd.DataFrame(food)
+    new_features = np.array(features[1:])
+    new_features = new_features.astype(np.float)
+    df = pd.DataFrame(data=new_features)
+    
     print(df.shape)
 
-    # model = tf.keras.models.load_model('model')
-
-    return str(features)
-
+    model = tf.keras.models.load_model('my_h5_model.h5')
+    result = model.predict(df.T)
+    return str(result)
  
 if __name__ == '__main__':
     app.run(debug=True, port=3001)
