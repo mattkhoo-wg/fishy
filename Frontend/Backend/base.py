@@ -13,11 +13,19 @@ app = Flask(__name__)
 # when root url is accessed
 @app.route("/<address>")
 def hello_world(address):
+    max_scaler = np.array(pd.read_csv('max.csv'))
+    min_scaler = np.array(pd.read_csv('min.csv'))
     features = getFeatures.get_features_from_address(address)
     new_features = np.array(features[1:])
-    new_features = new_features.astype(np.float)
-    df = pd.DataFrame(data=new_features)
-    
+    final = []
+    for i in range(0,len(max_scaler)):
+        max = max_scaler[i]
+        min = min_scaler[i]
+        print('wtf')
+        print(max)
+        diff = max - min
+        final.append((new_features[i] - min)/diff)
+    df = pd.DataFrame(np.array(final))
     print(df.shape)
 
     model = tf.keras.models.load_model('my_h5_model.h5')
