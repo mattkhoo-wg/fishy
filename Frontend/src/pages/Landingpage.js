@@ -36,6 +36,7 @@ function LandingPage() {
   //keeps track of address to search
   const [searchInput, setSearchInput] = useState('')
   const [result, setResult] = useState('')
+  const [amount, setAmount] = useState('')
   const [address, setAddress] = useState('0x1')
 
   const { value, reset, bindings } = useInput('')
@@ -44,6 +45,12 @@ function LandingPage() {
 
   const handleChange = (event) => {
     setAddress(event.target.value)
+
+    console.log('value is:', event.target.value)
+  }
+  
+  const handleChangeAmount = (event) => {
+    setAmount(event.target.value)
 
     console.log('value is:', event.target.value)
   }
@@ -82,6 +89,8 @@ function LandingPage() {
             Placeholder="Amount"
             type="number"
             color="default"
+            min="0"
+            onChange={handleChangeAmount}
           />
           <Dropdown>
             <Dropdown.Button flat>ETH</Dropdown.Button>
@@ -92,7 +101,7 @@ function LandingPage() {
           </Dropdown>
         </SecondSearchbarContainer>
         <SubmitContainer>
-          <ResultsModel address ={address}></ResultsModel>
+          <ResultsModel address ={address} setAddress={setAddress} amount={amount}></ResultsModel>
         </SubmitContainer>
       </LandingPageBox>
       <Bubbles></Bubbles>
