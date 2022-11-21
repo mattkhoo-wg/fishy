@@ -50,7 +50,10 @@ async function getResult() {
       .get('http://127.0.0.1:3001/' + address, {})
       .then(function (response) {
         console.log('YAYYA')
-        setResult(Math.round(response.data*100))
+       
+        response.data = Math.round(response.data*100)
+        setResult(response.data)
+ 
         if (response.data > 70) {
           setPath(imgPath[2])
           setColor(colors[2])
@@ -102,7 +105,6 @@ async function getResult() {
         <Modal.Body style={{alignItems:'center', paddingTop:'0'}}>
             <img src={path} alt='fish image'/>
             <p style={{color:colorT, fontSize:'40px' }}> {result}% </p>
-            <p style={{color:colorT, fontSize:'20px' }}> Would you still like to send *amount* to *address*</p>
         </Modal.Body>
         <Modal.Footer>
           <Button auto flat color="error" onClick={closeHandler}>
