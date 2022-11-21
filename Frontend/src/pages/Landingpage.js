@@ -50,7 +50,12 @@ function LandingPage() {
   }
   
   const handleChangeAmount = (event) => {
-    setAmount(event.target.value)
+    if (event.target.value> 999){
+        setAmount(999)
+    } else {
+        setAmount(event.target.value)
+    }
+    
 
     console.log('value is:', event.target.value)
   }
@@ -74,7 +79,7 @@ function LandingPage() {
           <Input
             width="400px"
             labelLeft="address"
-            placeholder="vitalik.eth"
+            placeholder="banteg.eth"
             css={{
               $$inputColor: '#a054e052',
             //   $$inputPlaceholderColor: 'red',
@@ -95,23 +100,27 @@ function LandingPage() {
             type="number"
             color="default"
             min="0"
+            max="100"
+            maxLength="3"
+        
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
             onChange={handleChangeAmount}
             css={{
                 $$inputColor: '#a054e052',
               //   $$inputPlaceholderColor: 'red',
                 $$ColorsAccents2: '#A054E0',
+         
               }}
           />
           <Dropdown>
             <Dropdown.Button flat>ETH</Dropdown.Button>
-            <Dropdown.Menu aria-label="Static Actions">
-              <Dropdown.Item key="new">USDC</Dropdown.Item>
-              <Dropdown.Item key="copy">USDT</Dropdown.Item>
-            </Dropdown.Menu>
+            {/* <Dropdown.Menu aria-label="Static Actions"> */}
+        
+            {/* </Dropdown.Menu> */}
           </Dropdown>
         </SecondSearchbarContainer>
         <SubmitContainer>
-          <ResultsModel address ={address} setAddress={setAddress} amount={amount}></ResultsModel>
+          <ResultsModel address ={address} setAddress={setAddress} amount={amount} setAmount={setAmount}></ResultsModel>
         </SubmitContainer>
       </LandingPageBox>
       <Bubbles></Bubbles>

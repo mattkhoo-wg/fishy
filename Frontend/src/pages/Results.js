@@ -4,12 +4,14 @@ import { SendIcon } from "../components/sendIcon";
 import {utils, BigNumber} from "ethers";
 import axios from "axios";
 import { useState, useEffect } from 'react'
-import toast, { Toaster } from 'react-hot-toast';
-import { ethers } from 'ethers'
-import { usePrepareSendTransaction, useSendTransaction } from 'wagmi'
+import { ethers } from 'ethers';
+import { usePrepareSendTransaction, useSendTransaction } from 'wagmi';
 
 
-const notify = () => toast('Here is your toast.');
+
+
+
+
 
 
 
@@ -17,7 +19,7 @@ const provider = new ethers.providers.JsonRpcProvider('https://eth-mainnet.g.alc
 
 
 
-function ResultsModel({address, setAddress, amount}) {
+function ResultsModel({address, setAddress, amount, setAmount}) {
 
   const { config } = usePrepareSendTransaction({
     request: { to: address, value: BigNumber.from(String(amount*1000000000000000000)) },
@@ -27,7 +29,7 @@ function ResultsModel({address, setAddress, amount}) {
 
   const [visible, setVisible] = React.useState(false);
   const [result, setResult] = useState('')
-  const [path, setPath] = useState('')
+  const [path, setPath] = useState(require('../images/loadingFish.gif'));
   const [colorT, setColor] = useState('')
   const [line, setLine] = useState('')
   const [amountNotZero, setAmountNotZero] = useState(false)
@@ -98,6 +100,9 @@ async function getResult() {
   const closeHandler = () => {
     setResult('');
     setVisible(false);
+    setPath(require('../images/loadingFish.gif'));
+    setLine('');
+    setAmount('');
     console.log("closed");
   };
 
@@ -105,8 +110,9 @@ async function getResult() {
 
   return (
     <div>
+      {/* <SnackbarProvider /> */}
       <Button  onPress={() => {getResult(address)}}css={{width:"176px", background: "#621BEB"}} auto shadow onClick={handler}>
-        Check
+        {amount > 0 ? "Send ": "Check"}
       </Button>
       <Modal
         closeButton
@@ -121,7 +127,7 @@ async function getResult() {
         </Modal.Header>
         <Modal.Body style={{alignItems:'center', paddingTop:'0'}}>
             <p style={{fontSize: '20px'}}> {line}</p>
-            <img src={path} alt='fish image' style={{width: '75%'}}/>
+            <img src={path} style={{width: '75%'}}/>
             <p style={{color:colorT, fontSize:'45px' }}> {result}% </p>
             <p style={{fontSize: '20px'}}>Address: {address.slice(0,8)}...{address.slice(32,40)}</p>
             {amountNotZero ? <p style={{fontSize: '20px'}}>Amount: {amount}</p> : <></>}
@@ -132,12 +138,13 @@ async function getResult() {
           <Button auto flat color="error" onClick={closeHandler}>
             Close
           </Button>
-          <Button auto onClick={() => {sendTransactionHandler(); closeHandler(); }}>
+          {amount > 0 ? <Button auto onClick={() => {sendTransactionHandler(); closeHandler(); }}>
             Send &nbsp; <SendIcon size={15} />
-          </Button>
+          </Button>: <></>}
+          
         </Modal.Footer>
       </Modal>
-      
+
     </div>
     
   );
