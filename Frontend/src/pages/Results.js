@@ -29,13 +29,17 @@ function ResultsModel({address, setAddress, amount}) {
   const [result, setResult] = useState('')
   const [path, setPath] = useState('')
   const [colorT, setColor] = useState('')
-  const imgPath = ['../images/deadfish.png','../images/midfish.png','../images/livefish.png']
-  const colors = ['FF4A4A','#FFB636','#68BD46']
-  const lines = ['uh oh this fish might be dangerous...', "we're not too sure about this one", "This guys is harmless", "You've met the most honest fish in the sea"]
+  const [line, setLine] = useState('')
+  const [amountNotZero, setAmountNotZero] = useState(false)
+
+  const imgPath = ['../images/evil.png','../images/hidden.png','../images/suit.png','../images/happy.png']
+  const colors = ['#FF4A4A','#FFB636', '#8CD47E', '#68BD46']
+  const lines = ['uh oh this fish might be dangerous...', "we're not too sure about this one", "This guys is harmless", "You've met the most honest fish in the ocean"]
   
 //   const handler = () => setVisible(true);
 
 async function getResult() {
+    setAmountNotZero(amount > 0)
     if (utils.isAddress(address)){
         setAddress(address)
 
@@ -54,15 +58,22 @@ async function getResult() {
         response.data = Math.round(response.data*100)
         setResult(response.data)
  
-        if (response.data > 70) {
+        if (response.data > 75) {
+          setPath(imgPath[3])
+          setColor(colors[3])
+          setLine(lines[3])
+        } else if (response.data <= 75 && response.data > 50) {
           setPath(imgPath[2])
           setColor(colors[2])
-        } else if (response.data < 40) {
-          setPath(imgPath[0])
-          setColor(colors[0])
-        } else {
+          setLine(lines[2])
+        } else if (response.data <= 50 && response.data > 25) {
           setPath(imgPath[1])
           setColor(colors[1])
+          setLine(lines[1])
+        }else {
+          setPath(imgPath[0])
+          setColor(colors[0])
+          setLine(lines[0])
         }
       })
       .catch(function (error) {
@@ -103,10 +114,15 @@ async function getResult() {
           </Text>
         </Modal.Header>
         <Modal.Body style={{alignItems:'center', paddingTop:'0'}}>
-            <img src={path} alt='fish image'/>
-            <p style={{color:colorT, fontSize:'40px' }}> {result}% </p>
+            <p style={{fontSize: '20px'}}> {line}</p>
+            <img src={path} alt='fish image' style={{width: '75%'}}/>
+            <p style={{color:colorT, fontSize:'45px' }}> {result}% </p>
+            <p style={{fontSize: '20px'}}>Address: {address.slice(0,8)}...{address.slice(32,40)}</p>
+            {amountNotZero ? <p style={{fontSize: '20px'}}>Amount: {amount}</p> : <></>}
         </Modal.Body>
         <Modal.Footer>
+          
+          {/* {conditional thing} */}
           <Button auto flat color="error" onClick={closeHandler}>
             Close
           </Button>
