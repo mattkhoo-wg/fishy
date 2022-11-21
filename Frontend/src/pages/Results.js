@@ -31,6 +31,7 @@ function ResultsModel({address, setAddress, amount}) {
   const [colorT, setColor] = useState('')
   const imgPath = ['../images/deadfish.png','../images/midfish.png','../images/livefish.png']
   const colors = ['FF4A4A','#FFB636','#68BD46']
+  const lines = ['uh oh this fish might be dangerous...', "we're not too sure about this one", "This guys is harmless", "You've met the most honest fish in the sea"]
   
 //   const handler = () => setVisible(true);
 
@@ -101,6 +102,7 @@ async function getResult() {
         <Modal.Body style={{alignItems:'center', paddingTop:'0'}}>
             <img src={path} alt='fish image'/>
             <p style={{color:colorT, fontSize:'40px' }}> {result}% </p>
+            <p style={{color:colorT, fontSize:'20px' }}> Would you still like to send *amount* to *address*</p>
         </Modal.Body>
         <Modal.Footer>
           <Button auto flat color="error" onClick={closeHandler}>
