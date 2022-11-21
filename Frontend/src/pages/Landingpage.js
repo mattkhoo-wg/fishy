@@ -67,6 +67,7 @@ function LandingPage() {
             alt="fish logo"
             width="300px"
             paddingTop="20px"
+            height='214.34px'
           />
         </LogoContainer>
         <SearchbarContainer>
@@ -75,16 +76,17 @@ function LandingPage() {
             labelLeft="address"
             placeholder="vitalik.eth"
             css={{
-              $$inputColor: '#A054E0',
-              $$inputPlaceholderColor: '#A054E0',
-              $$nextuiColorsAccents2: '#A054E0',
+              $$inputColor: '#a054e052',
+            //   $$inputPlaceholderColor: 'red',
+              $$ColorsAccents2: '#A054E0',
             }}
             onChange={handleChange}
             shadow
           />
         </SearchbarContainer>
+
         <SecondSearchbarContainer>
-            <div style={{alignSelf: "center"}}>
+            <div style={{alignSelf: "center", paddingRight: '23px'}}>
             Fill to also send assets
             </div>
           <Input
@@ -94,6 +96,11 @@ function LandingPage() {
             color="default"
             min="0"
             onChange={handleChangeAmount}
+            css={{
+                $$inputColor: '#a054e052',
+              //   $$inputPlaceholderColor: 'red',
+                $$ColorsAccents2: '#A054E0',
+              }}
           />
           <Dropdown>
             <Dropdown.Button flat>ETH</Dropdown.Button>

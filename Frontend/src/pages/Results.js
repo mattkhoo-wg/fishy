@@ -33,6 +33,12 @@ function ResultsModel({address, setAddress, amount}) {
   const colors = ['#FF4A4A','#FFB636','#68BD46']
   
 //   const handler = () => setVisible(true);
+async function sendTransactionHandler() {
+  if (amount > 0) {
+    sendTransaction?.();
+  }
+}
+  
 
 async function getResult() {
     if (utils.isAddress(address)){
@@ -109,7 +115,7 @@ async function getResult() {
           <Button auto flat color="error" onClick={closeHandler}>
             Close
           </Button>
-          <Button auto onClick={() => {sendTransaction?.(); closeHandler(); }}>
+          <Button auto onClick={() => {sendTransactionHandler(); closeHandler(); }}>
             Send &nbsp; <SendIcon size={15} />
           </Button>
         </Modal.Footer>
