@@ -8,11 +8,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import { ethers } from 'ethers'
 import { usePrepareSendTransaction, useSendTransaction } from 'wagmi'
 
-<<<<<<< HEAD
 
 const notify = () => toast('Here is your toast.');
-=======
->>>>>>> e5f0c5edd5329a99021181f553364cc1ba7a3542
 
 
 
@@ -31,9 +28,9 @@ function ResultsModel({address, setAddress, amount}) {
   const [visible, setVisible] = React.useState(false);
   const [result, setResult] = useState('')
   const [path, setPath] = useState('')
-  const [color, setColor] = useState('')
+  const [colorT, setColor] = useState('')
   const imgPath = ['../images/deadfish.png','../images/midfish.png','../images/livefish.png']
-  const colors = ['#FF4A4A','#FFB636','#68BD46']
+  const colors = ['FF4A4A','#FFB636','#68BD46']
   
 //   const handler = () => setVisible(true);
 
@@ -103,7 +100,7 @@ async function getResult() {
         </Modal.Header>
         <Modal.Body style={{alignItems:'center', paddingTop:'0'}}>
             <img src={path} alt='fish image'/>
-            <p style={{color:{color}, fontSize:'40px' }}> {color}{result}% </p>
+            <p style={{color:colorT, fontSize:'40px' }}> {result}% </p>
         </Modal.Body>
         <Modal.Footer>
           <Button auto flat color="error" onClick={closeHandler}>
