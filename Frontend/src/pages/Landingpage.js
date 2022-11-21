@@ -84,6 +84,9 @@ function LandingPage() {
           />
         </SearchbarContainer>
         <SecondSearchbarContainer>
+            <div style={{alignSelf: "center"}}>
+            Fill to also send assets
+            </div>
           <Input
             width="85px"
             Placeholder="Amount"
